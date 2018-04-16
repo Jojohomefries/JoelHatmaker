@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45151618-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-45151618-1');
+        </script>
+
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.3/vivus.js"></script>
+        <script src="js/main.js"></script>
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>JoelHatmaker.com - Contact</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Montserrat" rel="stylesheet">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body class="contact">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+
+        <!-- Add your site or application content here -->
+         <section class="masthead">
+           <div class="site title col-sm-3">JoelHatmaker.com</div>
+           <div class="col-sm-9">
+               <nav>
+                <ul class="navigation">
+                    <li class="nav-item"><a href="/index.html">Home</a></li>
+                    <li class="nav-item"><a href="/work.html">Work</a></li>
+                    <li class="nav-item active"><a href="/contact.html">Me</a></li>
+                </ul>
+               </nav>
+           </div>
+        </section>
+        <section class="sec-row">
+            <div class="hero col-sm-4">
+                <object id="portrait" type="image/svg+xml" data="/img/portrait.svg"></object>
+
+                    <script>
+                      new Vivus('portrait', 
+                        {
+                            duration: 550, 
+                            onReady: function (vivusInstance) {
+                                $('#portrait').css('visibility','visible');
+                              },
+                            }, function(){
+
+                        });
+
+                    </script>
+            </div>
+          <div class="contact col-sm-8">
+            <h2>Contact Me</h2>
+            <p>Please drop me a line if you want to discuss a project or just to say hello!</p>
+            <div class="ajax-msg"></div>
+                <form id="contact-form" class="contact-form"  method="post" action="">
+                    <div class="form-row">
+                        <label class="description" for="full-name">Your Name: </label>
+                            <input name="full-name" class="text draw" type="text" maxlength="255" value="" required/> 
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row">
+                        <label class="description" for="company">Your Company: </label>
+                            <input name="company" class="text draw" type="text" maxlength="255" value="" required/> 
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row">
+                        <label class="description" for="email">Email: </label>
+                            <input name="email" class="text draw" type="email" maxlength="255" value="" required/> 
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row">
+                        <label class="description" for="phone">Phone: </label>
+                            <input name="phone" class="text draw" size="15" maxlength="15" value="" type="text" required>
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row">
+                        <label class="description" for="project">Project Type: </label>
+                        <select name="project" required> 
+                            <option value="Web Development" selected="selected">Web Development</option>
+                            <option value="Web Design" >Web Design</option>
+                            <option value="Motion Graphics" >Motion Graphics</option>
+                            <option value="Marketing Tools" >Marketing Tools</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label class="description" for="budget">Budget: </label>
+                            <input name="budget" class="text draw" type="text" maxlength="255" value="" required/> 
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row ta">
+                        <label class="description" for="message">Message: </label>
+                            <textarea name="message" class="standard draw" required></textarea> 
+                            <span class="focus-border"><i></i></span>
+                    </div>
+                    <div class="form-row">
+                        <span class="submit-contact" type="submit" name="submit">Hit me up!</span>
+                    </div>
+                </form> 
+          </div>
+      </section>
+      <footer>
+            <div class="footer-left">
+                &copy;
+                <span id="copyright">
+                    <script type="text/javascript">document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                </span>
+                 Joel Hatmaker
+            </div>
+            <div class="footer-right">
+                <span class="link"><a href="https://www.linkedin.com/in/joelhatmaker/" target="_blank"><img src="/img/linkedin.jpg" /></a></span>
+                <span class="link"><a href="https://github.com/Jojohomefries" target="_blank"><img src="/img/github.jpg" /></a></span>
+            </div>
+        </footer>
+
+
+
+
+    </body>
+</html>

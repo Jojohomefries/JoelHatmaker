@@ -1,0 +1,205 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45151618-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-45151618-1');
+        </script>
+
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript">
+
+            let posts;
+            let categories;
+            let tags;
+            let baseUrl = 'http://www.bdindependent.com/jdh2018wp/wp-json/wp/v2/';
+            $.getJSON(baseUrl+'posts', function(data) {
+                posts = data;
+                for (var i = 0; i < posts.length; i++) {
+                    $('.posts').append(
+                       '<div class="entry loading col-lg-6 col-md-12 col-sm-12 col-xs-12 post-entry-'+i+'">'
+                       +'<div class="sk-circle">'
+                          +'<div class="sk-circle1 sk-child"></div>'
+                          +'<div class="sk-circle2 sk-child"></div>'
+                          +'<div class="sk-circle3 sk-child"></div>'
+                          +'<div class="sk-circle4 sk-child"></div>'
+                          +'<div class="sk-circle5 sk-child"></div>'
+                          +'<div class="sk-circle6 sk-child"></div>'
+                          +'<div class="sk-circle7 sk-child"></div>'
+                          +'<div class="sk-circle8 sk-child"></div>'
+                          +'<div class="sk-circle9 sk-child"></div>'
+                          +'<div class="sk-circle10 sk-child"></div>'
+                          +'<div class="sk-circle11 sk-child"></div>'
+                          +'<div class="sk-circle12 sk-child"></div>'
+                        +'</div>'
+                        +'<div class="inner"</div>'
+                        +'</div>'
+                    );
+                };
+                //console.log(posts);
+                $.getJSON(baseUrl+'categories', function(data) {
+                    categories = data;
+                    $.getJSON(baseUrl+'tags?page=1&per_page=100', function(data) {
+                        tags = data;
+                        console.log(posts);
+                        console.log(tags);
+
+
+                        $.each(posts, function(key,value){
+
+                            let media = value.featured_media;
+                            let iteration = key;
+
+                            let post_tags = [];
+                                $.each(value.tags, function(index,value){
+                                    console.log('tag arr: '+value);
+                                    let result = tags.find(function( obj ) {
+                                      return obj.id === value;
+                                    });
+                                    //console.log(result.name);
+                                    post_tags.push('<span class="tag">'+result.name+'</span>');
+                                });
+                                let post_categories = [];
+                                $.each(value.categories, function(index,value){
+                                    let result = categories.find(function( obj ) {
+                                      return obj.id === value;
+                                    });
+                                    //console.log(result.name);
+                                    post_categories.push(result.name);
+                                });
+                                let title = value.title.rendered;
+                                let content = value.content.rendered;
+                                let pUrl = value.url;
+
+
+                             $.getJSON(baseUrl+'media/'+media, function(data) {
+
+                                //let index = tags.findIndex(p => p.id == 4);
+                                //console.log(index);
+                                console.log(data);
+                                console.log(iteration);
+                                $('.post-entry-'+iteration+' .sk-circle').remove();
+                                $('.posts .post-entry-'+iteration+' .inner').append(
+                                    '<div class="image-wrap"><h3>'+title+'</h3><img src="'+data.media_details.sizes.large.source_url+'" alt="'+title+'-screenshot" />'
+                                    +'<div class="content">'
+                                    +content
+                                    +'<a class="view-more" href="'+pUrl+'">View Project</a>'
+                                    +'</div>' 
+                                    +'</div>'                                     
+                                    +'<span class="categories">'+post_categories.join(',')+'</span>'
+                                                                       
+                                    +'<div class="tags">'
+                                    +post_tags.join('')
+                                    +'</div>'
+                                    +'</div>'                                    
+                                ).removeClass('loading');
+
+                            });//end load media api by id
+                        });//end each post
+                    });//end ajax tags
+                });//end ajax cats
+            });//end ajax posts
+/*            $.getJSON('http://www.bdindependent.com/jdh2018wp/wp-json/wp/v2/categories', function(data) {
+    categories = data;
+    console.log(categories);
+});
+            $.getJSON('http://www.bdindependent.com/jdh2018wp/wp-json/wp/v2/tags', function(data) {
+    tags = data;
+    console.log(tags);
+});*/
+            //console.log(posts);
+            //console.log(categories);
+            //console.log(tags);
+
+        </script>
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>JoelHatmaker.com</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Montserrat" rel="stylesheet">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+
+        <!-- Add your site or application content here -->
+        <section class="masthead">
+           <div class="site title col-sm-3">JoelHatmaker.com</div>
+           <div class="col-sm-9">
+               <nav>
+                <ul class="navigation">
+                    <li class="nav-item active"><a href="/index.html">Home</a></li>
+                    <li class="nav-item"><a href="/work.html">Work</a></li>
+                    <li class="nav-item"><a href="/contact.html">Me</a></li>
+                </ul>
+               </nav>
+           </div>
+        </section>
+        <section class="hero">
+            <h1>Joel Hatmaker</h1>
+            <h2>Web Designer / Web Developer / Motion Graphics in PDX</h2>
+            <p>I work with businesses and marketing firms to create functional, beautiful, and effective web sites and advertising tools.</p>
+        </section>
+        <section class="recent-work">
+            <h2>Featured Work</h2>
+                <div class="posts row">
+
+                </div>
+        </section>
+        <section class="clients">
+            <h2>Clients I've Worked With</h2>
+            <div class="row">
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_APM.jpg" alt="All Points Media" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_W3.jpg" alt="Watermelon Web Works" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_FWC.jpg" alt="Floating World Comics" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_OC.jpg" alt="Oldcastle" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_CCF.jpg" alt="Conquer Cancer" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_XERIUM.jpg" alt="Xerium" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_smuckers.jpg" alt="Smucker's" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_cp.jpg" alt="Champion Nutrition" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_gw.jpg" alt="Goodwill" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_brm.jpg" alt="Bobs Red Mill" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_dorg.jpg" alt="DiscoverOrg" /></div>
+                <div class="col-sm-3 col-xs-6"><img src="/img/logo_mni.jpg" alt="Time MNI" /></div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-left">
+                &copy;
+                <span id="copyright">
+                    <script type="text/javascript">document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                </span>
+                 Joel Hatmaker
+            </div>
+            <div class="footer-right">
+                <span class="link"><a href="https://www.linkedin.com/in/joelhatmaker/" target="_blank"><img src="/img/linkedin.jpg" /></a></span>
+                <span class="link"><a href="https://github.com/Jojohomefries" target="_blank"><img src="/img/github.jpg" /></a></span>
+            </div>
+        </footer>
+
+
+
+
+    </body>
+</html>
